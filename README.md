@@ -38,3 +38,9 @@ Does the same as `print` except that the numbers character representation is pri
 ### `input()`
 Returns the next line thrown into `stdin`.
 _Warning: Pauses the thread_
+
+### `to_int(array)`
+Converts the array to a number.
+It's the twin of parsing strings in other languages.
+
+### See `EXAMPLES.md` for more details
