@@ -23,11 +23,19 @@ public interface DeltaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFuncDecl(DeltaParser.FuncDeclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link DeltaParser#statement}.
+	 * Visit a parse tree produced by the {@code exprStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(DeltaParser.StatementContext ctx);
+	T visitExprStatement(DeltaParser.ExprStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code setVarStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetVarStatement(DeltaParser.SetVarStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code simpleExpr}
 	 * labeled alternative in {@link DeltaParser#expr}.

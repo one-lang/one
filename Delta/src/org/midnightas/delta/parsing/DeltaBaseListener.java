@@ -40,13 +40,25 @@ public class DeltaBaseListener implements DeltaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(DeltaParser.StatementContext ctx) { }
+	@Override public void enterExprStatement(DeltaParser.ExprStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(DeltaParser.StatementContext ctx) { }
+	@Override public void exitExprStatement(DeltaParser.ExprStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetVarStatement(DeltaParser.SetVarStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetVarStatement(DeltaParser.SetVarStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

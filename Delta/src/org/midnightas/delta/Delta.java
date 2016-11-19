@@ -13,14 +13,15 @@ import org.midnightas.delta.parsing.DeltaParser.ArrayContext;
 import org.midnightas.delta.parsing.DeltaParser.ArrayIndexSugarContext;
 import org.midnightas.delta.parsing.DeltaParser.ExprAtomSugarContext;
 import org.midnightas.delta.parsing.DeltaParser.ExprContext;
+import org.midnightas.delta.parsing.DeltaParser.ExprStatementContext;
 import org.midnightas.delta.parsing.DeltaParser.FuncCallSugarContext;
 import org.midnightas.delta.parsing.DeltaParser.IdentifierContext;
 import org.midnightas.delta.parsing.DeltaParser.NumberContext;
 import org.midnightas.delta.parsing.DeltaParser.OpExprContext;
 import org.midnightas.delta.parsing.DeltaParser.ParenExprContext;
 import org.midnightas.delta.parsing.DeltaParser.ProgramContext;
+import org.midnightas.delta.parsing.DeltaParser.SetVarStatementContext;
 import org.midnightas.delta.parsing.DeltaParser.SimpleExprContext;
-import org.midnightas.delta.parsing.DeltaParser.StatementContext;
 import org.midnightas.delta.parsing.DeltaParser.StringContext;
 
 public class Delta {
@@ -67,6 +68,15 @@ public class Delta {
 		return null;
 	}
 
+	public void setVar(String name, Object o) {
+		for (int i = 0; i < scopes.size(); i++)
+			if (scopes.get(i).vars.containsKey(name)) {
+				scopes.get(i).vars.put(name, o);
+				return;
+			}
+		scopes.get(0).vars.put(name, o);
+	}
+
 	public static void read(String code) {
 		DeltaParser parser = new DeltaParser(new CommonTokenStream(new DeltaLexer(new ANTLRInputStream(code))));
 		parser.setBuildParseTree(true);
@@ -86,8 +96,14 @@ public class Delta {
 			return null;
 		}
 
-		public VarContainer visitStatement(StatementContext ctx) {
+		public VarContainer visitExprStatement(ExprStatementContext ctx) {
 			return visit(ctx.expr());
+		}
+
+		public VarContainer visitSetVarStatement(SetVarStatementContext ctx) {
+			DeltaInstance setTo = (DeltaInstance) visit(ctx.expr());
+			delta.setVar(ctx.identifier().getText(), setTo);
+			return setTo;
 		}
 
 		public VarContainer visitOpExpr(OpExprContext ctx) {
@@ -180,7 +196,7 @@ public class Delta {
 	}
 
 	public static final void main(String[] args) {
-		Delta.read("print(\"ABC\"[3] % 5)");
+		Delta.read("someVar = 5\nprint(someVar + 2)");
 	}
 
 }

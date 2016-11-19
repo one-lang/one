@@ -28,15 +28,29 @@ public interface DeltaListener extends ParseTreeListener {
 	 */
 	void exitFuncDecl(DeltaParser.FuncDeclContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DeltaParser#statement}.
+	 * Enter a parse tree produced by the {@code exprStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(DeltaParser.StatementContext ctx);
+	void enterExprStatement(DeltaParser.ExprStatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DeltaParser#statement}.
+	 * Exit a parse tree produced by the {@code exprStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(DeltaParser.StatementContext ctx);
+	void exitExprStatement(DeltaParser.ExprStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code setVarStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetVarStatement(DeltaParser.SetVarStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code setVarStatement}
+	 * labeled alternative in {@link DeltaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetVarStatement(DeltaParser.SetVarStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code simpleExpr}
 	 * labeled alternative in {@link DeltaParser#expr}.
