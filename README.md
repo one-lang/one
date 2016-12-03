@@ -5,7 +5,7 @@ One is an experimental programming language that only uses one primitive type.. 
 Java 8 must be installed on your system to run One programs.
 
     java -jar one.jar one.one
-Replace `one.jar` with the path to the Delta interpreter and `one.one` with the program path.
+Replace `one.jar` with the path to the One interpreter and `one.one` with the program path.
 
 ## *BUT* **WATS** AB*OOT* STRRREEEEENGS??//??????/????!?!!?!!1?!!?1?!?!/1?!!?!?!?!?!
 One has some little sugar (it's syntatic, not edible).  
